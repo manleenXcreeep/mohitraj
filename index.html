@@ -1,24 +1,240 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Gallery grid css</title>
-  <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Card</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Indie Flower', cursive !important;
+            background: #FDE3A7; /* CAPE HONEY */
+            margin: 0;
+            padding: 0;
+        }
 
+        ::selection {
+            background: transparent;
+        }
+
+        h4 {
+            font-size: 26px;
+            line-height: 1px;
+            font-family: 'Amatic SC', cursive !important;
+        }
+
+        .color1 {
+            color: #1BBC9B; /* MOUNTAIN MEADOW */
+        }
+
+        .color2 {
+            color: #C0392B; /* TALL POPPY */
+        }
+
+        .card {
+            color: #013243; /* SHERPA BLUE */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 400px;
+            background: #e0e1dc;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) perspective(2000px);
+            box-shadow: inset 300px 0 50px rgba(0, 0, 0, .5), 20px 0 60px rgba(0, 0, 0, .5);
+            transition: 1s;
+        }
+
+        .card:hover {
+            transform: translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.2);
+            box-shadow: inset 20px 0 50px rgba(0, 0, 0, .5), 0 10px 100px rgba(0, 0, 0, .5);
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #BAC1BA;
+            transform-origin: bottom;
+            transform: skewX(-45deg);
+        }
+
+        .card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -5px;
+            width: 5px;
+            height: 100%;
+            background: #92A29C;
+            transform-origin: left;
+            transform: skewY(-45deg);
+        }
+
+        .card .imgBox {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-origin: left;
+            transition: .7s;
+        }
+
+        .card .bark {
+            position: absolute;
+            background: #e0e1dc;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: .7s;
+        }
+
+        .card .imgBox img {
+            min-width: 250px;
+            max-height: 400px;
+        }
+
+        .card:hover .imgBox {
+            transform: rotateY(-135deg);
+        }
+
+        .card:hover .bark {
+            opacity: 1;
+            transition: .6s;
+            box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+        }
+
+        .card .details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            padding: 0 0 0 10px;
+            z-index: -1;
+            margin-top: 70px;
+        }
+
+        .card .details p {
+            font-size: 15px;
+            line-height: 5px;
+            transform: rotate(-10deg);
+            padding: 0 0 0 20px;
+        }
+
+        .card .details h4 {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        /* Button styling */
+        .cssbuttons-io-button {
+            background: #a370f0;
+            color: white;
+            font-family: inherit;
+            padding: 0.35em;
+            padding-left: 1.2em;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 0.9em;
+            border: none;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            box-shadow: inset 0 0 1.6em -0.6em #714da6;
+            overflow: hidden;
+            position: relative;
+            height: 2.8em;
+            padding-right: 3.3em;
+            cursor: pointer;
+        }
+
+        .cssbuttons-io-button .icon {
+            background: white;
+            margin-left: 1em;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.2em;
+            width: 2.2em;
+            border-radius: 0.7em;
+            box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+            right: 0.3em;
+            transition: all 0.3s;
+        }
+
+        .cssbuttons-io-button:hover .icon {
+            width: calc(100% - 0.6em);
+        }
+
+        .cssbuttons-io-button .icon svg {
+            width: 1.1em;
+            transition: transform 0.3s;
+            color: #7b52b9;
+        }
+
+        .cssbuttons-io-button:hover .icon svg {
+            transform: translateX(0.1em);
+        }
+
+        .cssbuttons-io-button:active .icon {
+            transform: scale(0.95);
+        }
+
+        /* Position the button at the bottom-right */
+        .cssbuttons-io-button-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<section class="gallery">
-  <img src="https://picsum.photos/400" alt="images">
-  <img src="https://picsum.photos/401" alt="images">
-  <img src="https://picsum.photos/402" alt="images">
-  <img src="https://picsum.photos/403" alt="images">
-  <img src="https://picsum.photos/404" alt="images">
-  <img src="https://picsum.photos/405" alt="images">
-  <img src="https://picsum.photos/406" alt="images">
-  <img src="https://picsum.photos/407" alt="images">
-</section>
-<!-- partial -->
-  
+
+    <div class="card">
+        <div class="imgBox">
+            <div class="bark"></div>
+            <img src="https://image.ibb.co/fYzTrb/lastofus.jpg" alt="Last of Us Image">
+        </div>
+        <div class="details">
+            <h4 class="color1">You're not a Fossil! (YET)</h4>
+            <h4 class="color2 margin">(HAPPY BIRTHDAY)</h4>
+            <p>Dear MOHIT,</p>
+            <p>I wish i was there </p>
+            <p>with u today to personally</p>
+            <p>aplatter cake all over ur face</p>
+            <p>But atleast i can still talk to you</p>
+            <p>and stay in touch.have a great and </p>
+            <p>successful year ahead</p>
+            <p>MAN:)</p>
+            <p class="text-right">Happy Birthday!</p>
+            <p class="text-right">♥MANLEEN</p>
+        </div>
+    </div>
+
+    <!-- Wrapper for fixed button -->
+    <div class="cssbuttons-io-button-wrapper">
+        <!-- Link wrapping the button -->
+        <a href="https://manleenxcreeep.github.io/VANSIKA/" target="_blank">
+            <button class="cssbuttons-io-button">
+                Get started
+                <div class="icon">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+                    </svg>
+                </div>
+            </button>
+        </a>
+    </div>
+
 </body>
 </html>
+
